@@ -23,22 +23,29 @@ class AppSettings: ObservableObject {
     // MARK: - Constants
     let availableCaptureFrameRates: [Double] = [1.0, 5.0, 10.0, 30.0, 60.0, 120.0]
     private struct Defaults {
+        /// Focus Border Settings
         static let focusBorderEnabled: Bool = true
         static let focusBorderWidth: Double = 5.0
         static let focusBorderColor: Color = .gray
+        /// Source Title Settings
         static let sourceTitleEnabled: Bool = true
         static let sourceTitleFontSize: Double = 12.0
         static let sourceTitleBackgroundOpacity: Double = 0.4
+        /// Preview Settings
         static let previewOpacity: Double = 0.95
         static let previewCloseOnCaptureStop: Bool = false
         static let previewHideInactiveApplications: Bool = false
         static let previewHideActiveWindow: Bool = false
+        /// Window Settings
         static let windowDefaultWidth: Double = 288
         static let windowDefaultHeight: Double = 162
         static let windowManagedByMissionControl: Bool = true
         static let windowAlignmentEnabled: Bool = false
+        /// Capture Settings
         static let captureFrameRate: Double = 10.0
+        /// Hotkey Settings
         static let hotkeyBindings: [HotkeyBinding] = []
+        /// Filter Settings
         static let filterAppNames: [String] = []
         static let filterBlocklist: Bool = true
     }
@@ -214,22 +221,29 @@ class AppSettings: ObservableObject {
         logger.debug("Initializing settings manager")
 
         // Initialize with default values
+        /// Focus Border Settings
         self.focusBorderEnabled = Defaults.focusBorderEnabled
         self.focusBorderWidth = Defaults.focusBorderWidth
         self.focusBorderColor = Defaults.focusBorderColor
+        /// Source Title Settings
         self.sourceTitleEnabled = Defaults.sourceTitleEnabled
         self.sourceTitleFontSize = Defaults.sourceTitleFontSize
         self.sourceTitleBackgroundOpacity = Defaults.sourceTitleBackgroundOpacity
+        /// Preview Settings
         self.previewOpacity = Defaults.previewOpacity
-        self.windowDefaultWidth = Defaults.windowDefaultWidth
-        self.windowDefaultHeight = Defaults.windowDefaultHeight
-        self.windowManagedByMissionControl = Defaults.windowManagedByMissionControl
         self.previewCloseOnCaptureStop = Defaults.previewCloseOnCaptureStop
         self.previewHideInactiveApplications = Defaults.previewHideInactiveApplications
         self.previewHideActiveWindow = Defaults.previewHideActiveWindow
+        /// Window Settings
+        self.windowDefaultWidth = Defaults.windowDefaultWidth
+        self.windowDefaultHeight = Defaults.windowDefaultHeight
+        self.windowManagedByMissionControl = Defaults.windowManagedByMissionControl
         self.windowAlignmentEnabled = Defaults.windowAlignmentEnabled
-        self.hotkeyBindings = Defaults.hotkeyBindings
+        /// Capture Settings
         self.captureFrameRate = Defaults.captureFrameRate
+        /// Hotkey Settings
+        self.hotkeyBindings = Defaults.hotkeyBindings
+        /// Filter Settings
         self.filterAppNames = Defaults.filterAppNames
         self.filterBlocklist = Defaults.filterBlocklist
 
@@ -252,22 +266,29 @@ class AppSettings: ObservableObject {
         UserDefaults.standard.synchronize()
 
         // Reset all properties to defaults
+        /// Focus Border Settings
         focusBorderEnabled = Defaults.focusBorderEnabled
         focusBorderWidth = Defaults.focusBorderWidth
         focusBorderColor = Defaults.focusBorderColor
+        /// Source Title Settings
         sourceTitleEnabled = Defaults.sourceTitleEnabled
         sourceTitleFontSize = Defaults.sourceTitleFontSize
         sourceTitleBackgroundOpacity = Defaults.sourceTitleBackgroundOpacity
+        /// Preview Settings
         previewOpacity = Defaults.previewOpacity
-        windowDefaultWidth = Defaults.windowDefaultWidth
-        windowDefaultHeight = Defaults.windowDefaultHeight
-        windowManagedByMissionControl = Defaults.windowManagedByMissionControl
         previewCloseOnCaptureStop = Defaults.previewCloseOnCaptureStop
         previewHideInactiveApplications = Defaults.previewHideInactiveApplications
         previewHideActiveWindow = Defaults.previewHideActiveWindow
+        /// Window Settings
+        windowDefaultWidth = Defaults.windowDefaultWidth
+        windowDefaultHeight = Defaults.windowDefaultHeight
+        windowManagedByMissionControl = Defaults.windowManagedByMissionControl
         windowAlignmentEnabled = Defaults.windowAlignmentEnabled
-        hotkeyBindings = Defaults.hotkeyBindings
+        /// Capture Settings
         captureFrameRate = Defaults.captureFrameRate
+        /// Hotkey Settings
+        hotkeyBindings = Defaults.hotkeyBindings
+        /// Filter Settings
         filterAppNames = Defaults.filterAppNames
         filterBlocklist = Defaults.filterBlocklist
 
@@ -280,33 +301,29 @@ class AppSettings: ObservableObject {
     private func initializeFromStorage() {
         logger.debug("Loading settings from storage")
 
+        /// Focus Border Settings
         focusBorderEnabled = UserDefaults.standard.bool(forKey: StorageKeys.focusBorderEnabled)
         focusBorderWidth = UserDefaults.standard.double(forKey: StorageKeys.focusBorderWidth)
         focusBorderColor = UserDefaults.standard.color(forKey: StorageKeys.focusBorderColor)
+        /// Source Title Settings
         sourceTitleEnabled = UserDefaults.standard.bool(forKey: StorageKeys.sourceTitleEnabled)
         sourceTitleFontSize = UserDefaults.standard.double(forKey: StorageKeys.sourceTitleFontSize)
-        sourceTitleBackgroundOpacity = UserDefaults.standard.double(
-            forKey: StorageKeys.sourceTitleBackgroundOpacity)
+        sourceTitleBackgroundOpacity = UserDefaults.standard.double(forKey: StorageKeys.sourceTitleBackgroundOpacity)
+        /// Preview Settings
         previewOpacity = UserDefaults.standard.double(forKey: StorageKeys.previewOpacity)
+        previewCloseOnCaptureStop = UserDefaults.standard.bool(forKey: StorageKeys.previewCloseOnCaptureStop)
+        previewHideInactiveApplications = UserDefaults.standard.bool(forKey: StorageKeys.previewHideInactiveApplications)
+        previewHideActiveWindow = UserDefaults.standard.bool(forKey: StorageKeys.previewHideActiveWindow)
+        /// Window Settings
         windowDefaultWidth = UserDefaults.standard.double(forKey: StorageKeys.windowDefaultWidth)
-        windowDefaultHeight = UserDefaults.standard.double(
-            forKey: StorageKeys.windowDefaultHeight)
-        windowManagedByMissionControl = UserDefaults.standard.bool(
-            forKey: StorageKeys.windowManagedByMissionControl)
-        previewCloseOnCaptureStop = UserDefaults.standard.bool(
-            forKey: StorageKeys.previewCloseOnCaptureStop)
-        previewHideInactiveApplications = UserDefaults.standard.bool(
-            forKey: StorageKeys.previewHideInactiveApplications)
-        previewHideActiveWindow = UserDefaults.standard.bool(
-            forKey: StorageKeys.previewHideActiveWindow)
-        windowAlignmentEnabled = UserDefaults.standard.bool(
-            forKey: StorageKeys.windowAlignmentEnabled)
+        windowDefaultHeight = UserDefaults.standard.double(forKey: StorageKeys.windowDefaultHeight)
+        windowManagedByMissionControl = UserDefaults.standard.bool(forKey: StorageKeys.windowManagedByMissionControl)
+        windowAlignmentEnabled = UserDefaults.standard.bool(forKey: StorageKeys.windowAlignmentEnabled)
+        /// Capture Settings
         captureFrameRate = UserDefaults.standard.double(forKey: StorageKeys.captureFrameRate)
-        filterAppNames =
-            UserDefaults.standard.array(
-                forKey: StorageKeys.filterAppNames) as? [String] ?? []
-        filterBlocklist = UserDefaults.standard.bool(
-            forKey: StorageKeys.filterBlocklist)
+        /// Filter Settings
+        filterAppNames =UserDefaults.standard.array(forKey: StorageKeys.filterAppNames) as? [String] ?? []
+        filterBlocklist = UserDefaults.standard.bool(forKey: StorageKeys.filterBlocklist)
     }
 
     private func loadHotkeyBindings() {
@@ -400,22 +417,29 @@ class AppSettings: ObservableObject {
 
 /// Defines keys for persisting settings in UserDefaults
 private enum StorageKeys {
+    /// Focus Border Settings
     static let focusBorderEnabled: String = "showFocusedBorder"
     static let focusBorderWidth: String = "focusBorderWidth"
     static let focusBorderColor: String = "focusBorderColor"
+    /// Source Title Settings
     static let sourceTitleEnabled: String = "showWindowTitle"
     static let sourceTitleFontSize: String = "titleFontSize"
     static let sourceTitleBackgroundOpacity: String = "titleBackgroundOpacity"
+    /// Preview Settings
     static let previewOpacity: String = "windowOpacity"
-    static let windowDefaultWidth: String = "defaultWindowWidth"
-    static let windowDefaultHeight: String = "defaultWindowHeight"
-    static let windowManagedByMissionControl: String = "managedByMissionControl"
     static let previewCloseOnCaptureStop: String = "closeOnCaptureStop"
     static let previewHideInactiveApplications: String = "hideInactiveApplications"
     static let previewHideActiveWindow: String = "hideActiveWindow"
+    /// Window Settings
+    static let windowDefaultWidth: String = "defaultWindowWidth"
+    static let windowDefaultHeight: String = "defaultWindowHeight"
+    static let windowManagedByMissionControl: String = "managedByMissionControl"
     static let windowAlignmentEnabled: String = "enableEditModeAlignment"
+    /// Capture Settings
     static let captureFrameRate: String = "frameRate"
+    /// Hotkey Settings
     static let hotkeyBindings: String = "hotkeyBindings"
+    /// Filter Settings
     static let filterAppNames: String = "appFilterNames"
     static let filterBlocklist: String = "isFilterBlocklist"
 }
